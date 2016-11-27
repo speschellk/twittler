@@ -39,10 +39,23 @@ var randomMessage = function(){
 
 // generate random tweets on a random schedule
 var generateRandomTweet = function(){
+  var date = new Date;
+  var d = date.getDate();
+  var m =  date.getMonth();
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  var h = date.getHours();
+  var min = date.getMinutes();
+
+  if (min < 10) {
+    min = "0" + min;
+  }
+
+  date = months[m] + " " + d + " at " + h + ":" + min;
+
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = new Date();
+  tweet.created_at = date;
   addTweet(tweet);
 };
 
