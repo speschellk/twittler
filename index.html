@@ -17,13 +17,60 @@
         var $body = $('body');
         $("html").css({"width": "100%", "height": "100%"})
         //$body.html('');
-        $body.css({"background-color": "#c9ddff", "width": "100%", "height": "100%", "margin": "8px"});
-        $(".title").css({"display": "inline-block", "position": "relative", "right": "auto", "left": "auto", "top": "8%", "margin": "5px", "font-size": "90px", "font-family": "Bungee Inline, cursive, sans-serif", "color": "#6d6d6d"})
-        $(".tweet-container").css({"display": "inline-block", "position": "relative", "right": "auto", "left": "auto", "top": "25%", "float": "left", "width": "800px", "height": "150px", "background-color": "#fff"})
-        $(".button-container").css({"display": "inline-block", "position": "relative", "clear": "both", "float": "left", "right": "auto", "left": "auto", "top": "35%", "width": "360px",
-          "height": "60px", "background-color": "#000"})
-        $(".button").css({"display": "inline-block", "position": "relative", "margin": "5px", "background-color": "#f9fbff", "color": "#565656", "font-size": "20px", "font-family": "Bungee Inline, cursive, sans-serif", "border-radius": "10px", "width": "350px",
-          "height": "50px", "padding": "5px", "border": "none"})
+        $body.css({
+          "width": "100%",
+          "height": "100%",
+          "margin": "8px",
+          "background-color": "#c9ddff"
+        });
+        $(".title").css({
+          "width": "100%",
+          "display": "inline-block",
+          "position": "relative",
+          "right": "auto",
+          "left": "auto",
+          "top": "8%",
+          "margin": "5px",
+          "font-size": "90px",
+          "font-family": "Bungee Inline, cursive, sans-serif",
+          "color": "#6d6d6d",
+          "text-align": "center"
+        })
+        $(".tweet-container").css({
+          "width": "100%",
+          "height": "150px",
+          "display": "inline-block",
+          "position": "relative",
+          "right": "auto",
+          "left": "auto",
+          "top": "25%",
+          "float": "left",
+        })
+        $(".button-container").css({
+          "width": "100%",
+          "height": "60px",
+          "display": "inline-block",
+          "position": "relative",
+          "top": "35%",
+          "clear": "both",
+          "float": "left",
+        })
+        $(".button").css({
+          "width": "350px",
+          "height": "50px",
+          "display": "inline-block",
+          "position": "relative",
+          "left": "36%",
+          "right": "36%",
+          "padding": "5px",
+          "margin": "5px",
+          "border": "none",
+          "border-radius": "5px",
+          "background-color": "#f9fbff",
+          "color": "#565656",
+          "font-size": "20px",
+          "font-family": "Bungee Inline, cursive, sans-serif"
+        })
 
         var index = streams.home.length - 1;
 
@@ -34,12 +81,20 @@
             var tweet = streams.home[index];
             var $tweet = $(
               '<div class="new-tweet">' +
-                '<div class="username">@' + tweet.user + '</div>' +
+                '<div class="username">@' +
+                  '<a class="namelink" href="#timeline">' + tweet.user + '</a>' +
+                '</div>' +
                 '<div class="text">' + tweet.message + '</div>' +
                 '<div class="date">' + tweet.created_at + '</div>' +
               '</div>'
             ).hide();
-            $tweet.css({"text-align": "center", "font-size": "35px", "font-family": "Roboto Condensed, Helvetica, sans-serif", "color": "#565656"})
+            $tweet.css({
+              "font-size": "35px",
+              "font-family": "Roboto Condensed, Helvetica, sans-serif",
+              "color": "#565656",
+              "text-align": "center"
+            })
+            //a#timeline").css({"text-decoration": "none", "color": "gray"});
             $tweet.prependTo(".tweet-container");
             $tweet.fadeIn("slow");
             $tweet.removeClass("new-tweet");
