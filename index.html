@@ -8,10 +8,10 @@
     <script>moment().format();</script>
   </head>
   <body>
-    <div class="title">-Twittlerverse-</div>
+    <div class="title">- Twittlerverse -</div>
     <div class="tweet-container"></div>
     <div class="button-container">
-      <button class="button">-Consult-</button>
+      <button class="button">- Consult -</button>
     </div>
     <script>
 
@@ -27,19 +27,20 @@
         $(".button").css({"display": "inline-block", "position": "relative", "margin": "5px", "background-color": "#f9fbff", "color": "#565656", "font-size": "20px", "font-family": "Bungee Inline, cursive, sans-serif", "border-radius": "10px", "width": "350px", "height": "50px", "padding": "5px", "border": "none"})
 
         var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.hide();
-          $tweet.css({"font-size": "20px", "font-family": "Roboto Condensed, Helvetica, sans-serif", "color": "#565656"})
-          $tweet.text('@' + tweet.user + '\n ' + tweet.message + "- " + tweet.created_at);
+        var tweet = streams.home[index];
+        var $tweet = $('<div></div>');
+
+        for (index; index >= 0; index--){
           $(".button").on("click", function() {
+            $tweet.hide();
+            $tweet.css({"height": "90px", "font-size": "20px", "font-family": "Roboto Condensed, Helvetica, sans-serif", "color": "#565656"})
+            $tweet.text('@' + tweet.user + ": " + tweet.message + " - " + tweet.created_at);
             $tweet.prependTo($(".tweet-container"));
             $tweet.fadeIn("slow");
+            //index -= 1;
           });
-          index -= 1;
-        }
 
+        }
       });
 
     </script>
