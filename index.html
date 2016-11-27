@@ -109,30 +109,35 @@
               event.currentTarget === this
               var username = this.text
               var tweetHistory = streams.users[username]
+              $(d).append('<span class=historytitle>Tweet History</span><br></br><br></br>')
               // show timeline
               for (var key in tweetHistory) {
                 $(d).append('<div>' + tweetHistory[key].message + '<br></br>' + tweetHistory[key].created_at + '<br></br><br></br>' + '</div>')
               }
               $(d).prepend("<img id=close src=data:image/png;base64,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>")
 
-              //$(d).show()
-              $body.append(d)
+              $body.prepend(d)
               $(d).wrap("<a id=close-history href></a>")
               $(d).css({
                 "display": "inline-block",
-                "position": "relative",
-                "z-index": "1",
-                "left": "auto",
-                "right": "auto",
-                "width": "40%",
+                "position": "absolute",
+                "z-index": "2",
+                "top": "30%",
+                "left": "27%",
+                "width": "600px",
                 "margin": "none",
                 "padding-top": "50px",
-                "border": "1px solid #565656",
+                "border": "3px solid #f1f1f1",
                 "border-radius": "10px",
                 "background-color": "#fff",
                 "text-align": "center",
                 "text-decoration": "none",
                 "color": "#565656"
+              })
+              $(".historytitle").css({
+                "font-size": "25px",
+                "font-family": "Bungee Inline, cursive, sans-serif",
+                "color": "#6d6d6d"
               })
               $(d.div).css({
                 "display": "inline-block",
