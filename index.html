@@ -22,11 +22,11 @@
         $body.css({"position": "relative", "background-color": "#c9ddff", "width": "100%", "height": "100%", "margin": "8px"});
 
         $(".title").css({"display": "inline-block", "position": "relative", "left": "auto", "right": "auto", "margin": "5px", "font-size": "90px", "font-family": "Bungee Inline, cursive, sans-serif", "color": "#6d6d6d"})
-        $(".tweet-container").css({"display": "inline-block", "position": "relative", "right": "auto", "left": "auto", "top": "30%", "width": "600px", "height": "100px", "background-color": "#fff"})
+        $(".tweet-container").css({"display": "inline-block", "position": "relative", "right": "auto", "left": "auto", "top": "30%", "width": "800px", "height": "150px", "background-color": "#fff"})
         $(".button-container").css({"display": "inline-block", "position": "relative", "right": "auto", "left": "auto", "top": "60%", "width": "360px", "height": "60px", "background-color": "#000"})
         $(".button").css({"display": "inline-block", "position": "relative", "margin": "5px", "background-color": "#f9fbff", "color": "#565656", "font-size": "20px", "font-family": "Bungee Inline, cursive, sans-serif", "border-radius": "10px", "width": "350px", "height": "50px", "padding": "5px", "border": "none"})
 
-        var index = streams.home.length - 1;
+        /*var index = streams.home.length - 1;
         var tweet = streams.home[index];
         var $tweet = $('<div></div>');
 
@@ -39,8 +39,30 @@
             $tweet.fadeIn("slow");
             //index -= 1;
           });
+        };*/
 
-        }
+        var index = streams.home.length - 1;
+        var tweet = streams.home[index];
+
+        $(".button").on("click", function() {
+
+          if (index >= 0) {
+            $(".current-tweet").remove();
+            var $tweet = $(
+              '<div class="new-tweet">' +
+                '<div class="username">@' + tweet.user + '</div>' +
+                '<div class="text">' + tweet.message + '</div>' +
+                '<div class="date">' + tweet.created_at + '</div>' +
+              '</div>'
+            ).hide();
+            $tweet.css({"text-align": "center", "font-size": "35px", "font-family": "Roboto Condensed, Helvetica, sans-serif", "color": "#565656"})
+            $tweet.prependTo(".tweet-container");
+            $tweet.fadeIn("slow");
+            $tweet.removeClass("new-tweet");
+            $tweet.addClass("current-tweet");
+            index--;
+          };
+        });
       });
 
     </script>
