@@ -9,7 +9,7 @@
     <div class="title">- Twittlerverse -</div>
     <div class="tweet-container"></div>
     <div class="button-container">
-      <button class="button">- Consult -</button>
+      <button class="consult-button">- Consult -</button>
     </div>
     <script>
 
@@ -55,7 +55,7 @@
           "clear": "both",
           "float": "left",
         })
-        $(".button").css({
+        $(".consult-button").css({
           "width": "350px",
           "height": "50px",
           "display": "inline-block",
@@ -74,7 +74,7 @@
 
         var index = streams.home.length - 1;
 
-        $(".button").on("click", function() {
+        $(".consult-button").on("click", function() {
 
           if (index >= 0) {
             $(".current-tweet").remove();
@@ -100,6 +100,56 @@
             $tweet.removeClass("new-tweet");
             $tweet.addClass("current-tweet");
             index--;
+
+            $("a").click(function(event) {
+              var d = document.createElement("div")
+              //$(d).hide();
+
+              event.currentTarget === this
+              var username = this.text
+              var tweetHistory = streams.users[username]
+              // show timeline
+              for (var key in tweetHistory) {
+                $(d).append('<div>' + tweetHistory[key].message + '<br></br>' + tweetHistory[key].created_at + '<br></br><br></br>' + '</div>')
+              }
+
+              //$(d).show()
+              $body.append(d)
+              $(d).wrap("<a id=close-history href></a>")
+              $(d).css({
+                "display": "inline-block",
+                "position": "relative",
+                "z-index": "1",
+                "float": "right",
+                "left": "auto",
+                "right": "auto",
+                "width": "40%",
+                "margin": "none",
+                "padding-top": "50px",
+                "border": "1px solid #565656",
+                "border-radius": "10px",
+                "background-color": "#fff",
+                "text-align": "center",
+                "text-decoration": "none",
+                "color": "#565656"
+              })
+              $(d.div).css({
+                "display": "inline-block",
+                "position": "relative",
+                "left": "auto",
+                "right": "auto",
+                "top": "20px",
+                "margin": "5px",
+                "color": "#565656",
+                "font-size": "12px",
+                "font-family": "Roboto Condensed, sans-serif"
+              })
+
+            });
+            $("#close-history").on("click", function() {
+              console.log("button clicked")
+              $(d).remove()
+            })
           };
         });
       });
