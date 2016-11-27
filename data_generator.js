@@ -44,17 +44,15 @@ var generateRandomTweet = function(){
   var m =  date.getMonth();
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   var h = date.getHours();
-  var suffix = "am";
-  if (h >= 13) {
-    h -= 12;
-    suffix = "pm";
-  }
+  var ampm = h >= 12 ? 'pm' : 'am';
+  h = h % 12;
+  h = h ? h : 12; // the hour '0' should be '12'
   var min = date.getMinutes();
   if (min < 10) {
     min = "0" + min;
   }
 
-  date = months[m] + " " + d + " - " + h + ":" + min + " " + suffix;
+  date = months[m] + " " + d + " - " + h + ":" + min + " " + ampm;
 
   var tweet = {};
   tweet.user = randomElement(users);
